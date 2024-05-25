@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--for developing-->
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <!--for release, copy all code into html file-->
+    
+    <title>解放双手修改器</title>
+</head>
+<body>
+    <div id="popup-message" onclick="document.getElementById('popup-message').style.display = 'none'">
+        <p>使用提示：<br/>请上传正确格式的persons_value.sa和persons_face.sa<br/>
+        原代码为python且年代久远，转换为js后可能有错误，为避免坏档请注意备份<br/>
+        点击任意文字或灰色部分可以关闭此提示<br/>
+        想要永久移除此提示请修改index.html
+    </p>
+    </div>
+    <h3>上传需要修改的文件</h3>
+    <div>
+    请在此上传value文件
+    <input type="file" id="person_value" onchange="readValue()"></br>
+    </div>
+    <div>
+    请在此上传face文件
+    <input type="file" id="person_face" accept=".sa" onchange="readFace()"></br>
+    </div>
+    <h3>根据输入的id修改人物数据</h3>
+    <div>请输入你想修改的角色的id，用英文逗号","分割（可以直接复制onstars的内容）</br>
+        <textarea style="margin-top: 10px;" rows="3" cols="50" type="textarea" id="inputList" placeholder="1,2,3"></textarea></div>
+    
+    <div id="button-container">
+        将年龄修改为<input id="newAge" type="number"><button onclick="changeAge()">修改</button>
+        将衣服修改为<input id="newCloth" type="number"><button onclick="changeCloth()">修改</button><br />
+        将头饰修改为<input id="newDec" type="number"><button onclick="changeDec()">修改</button>
+        将发色修改为<input id="hairColor1" type="number"><input id="hairColor2" type="number"><input id="hairColor3" type="number"><button onclick="changeHair()">修改</button></button><br />
+        将配色修改为<input id="pColor1" type="number"><input id="pColor2" type="number"><input id="pColor3" type="number"><button onclick="changeColor()">修改</button></button><br />
+        将眼睛颜色修改为<input id="eColor1" type="number"><input id="eColor2" type="number"><input id="eColor3" type="number"><button onclick="changeEyeColor()">修改</button></button><br />
+        
+
+    </div>
+    <h3>下载修改后的文件</h3>
+    <div>
+        <button id="downloadValue" onclick="downloadValueFile()">下载person_value文件</button>
+        <button id="downloadFace" onclick="downloadFaceFile()">下载person_face文件</button>
+    </div>
+    <h3>根据输入进行查询</h3>
+    <div id="button-container">
+        查询id为<input id="checkP" type="number">的角色数据<button onclick="checkP()">查询</button><br />
+        查询id为<input id="checkFace" type="number">的角色脸数据<button onclick="checkFace()">查询</button><br />
+        查询id为<input id="loyp1" type="number">的角色对id为<input id="loyp2" type="number">的角色的忠诚度<button onclick="checkLoyalty()">查询</button><br />
+
+    </div>
+    <div style="word-wrap: break-word; width: 100%; font-family: 'Courier New', Courier, monospace;" id="message"></div>
+</body>
+</html>
