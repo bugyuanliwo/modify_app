@@ -54,6 +54,32 @@ function readFace() {
     }
 }
 
+function readOnstar() {
+    var fileInput = document.getElementById('getOnstars');
+    var file = fileInput.files[0];
+
+    if (file) {
+        var reader = new FileReader();
+        if (file.name !== 'onstars.sa') {
+            alert('你上传的文件名并非onstars.sa，请确认这是你想上传的文件!');
+        }
+
+        reader.onload = function(e) {
+            var contents = e.target.result;
+            try {
+                document.getElementById('inputList').value = contents.substring(1,contents.length-1);
+
+            } catch (error) {
+                alert("解析文件错误: " + error.message);
+            }
+        };
+
+        reader.readAsText(file);
+    } else {
+        alert("请选择一个文件");
+    }
+}
+
 function changeAge() {
     if (!person_value) {
         alert(`无法获取persons_value数据`);
@@ -69,7 +95,133 @@ function changeAge() {
             p.ni[4] = n;
         }
     })
-    document.getElementById('message').textContent = `修改年龄成功，请下载persons_value`;
+    document.getElementById('message').textContent = `修改年龄成功`;
+}
+
+function changeBrow() {
+    if (!person_face) {
+        alert(`无法获取persons_face数据`);
+    }
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    
+    var n = parseInt(document.getElementById('newBrow').value);
+    if (!confirm(`确认将编号为${lst}的角色眉毛修改为${n}吗？`)) {
+        return;
+    }
+    person_face.forEach(p => {
+        if (lst.includes(p.re[0])) {
+            p.re[4] = n;
+        }
+    })
+    document.getElementById('message').textContent = `修改眉毛成功`;
+}
+
+function changeEye() {
+    if (!person_face) {
+        alert(`无法获取persons_face数据`);
+    }
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    
+    var n = parseInt(document.getElementById('newEye').value);
+    if (!confirm(`确认将编号为${lst}的角色眼睛修改为${n}吗？`)) {
+        return;
+    }
+    person_face.forEach(p => {
+        if (lst.includes(p.re[0])) {
+            p.re[5] = n;
+        }
+    })
+    document.getElementById('message').textContent = `修改眼睛成功`;
+}
+
+function changeFace() {
+    if (!person_face) {
+        alert(`无法获取persons_face数据`);
+    }
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    
+    var n = parseInt(document.getElementById('newFace').value);
+    if (!confirm(`确认将编号为${lst}的角色脸型修改为${n}吗？`)) {
+        return;
+    }
+    person_face.forEach(p => {
+        if (lst.includes(p.re[0])) {
+            p.re[2] = n;
+        }
+    })
+    document.getElementById('message').textContent = `修改眼睛成功`;
+}
+
+function changeMouth() {
+    if (!person_face) {
+        alert(`无法获取persons_face数据`);
+    }
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    
+    var n = parseInt(document.getElementById('newMouth').value);
+    if (!confirm(`确认将编号为${lst}的角色嘴唇修改为${n}吗？`)) {
+        return;
+    }
+    person_face.forEach(p => {
+        if (lst.includes(p.re[0])) {
+            p.re[6] = n;
+        }
+    })
+    document.getElementById('message').textContent = `修改嘴唇成功`;
+}
+
+function changeEar() {
+    if (!person_face) {
+        alert(`无法获取persons_face数据`);
+    }
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    
+    var n = parseInt(document.getElementById('newEar').value);
+    if (!confirm(`确认将编号为${lst}的角色耳朵修改为${n}吗？`)) {
+        return;
+    }
+    person_face.forEach(p => {
+        if (lst.includes(p.re[0])) {
+            p.re[3] = n;
+        }
+    })
+    document.getElementById('message').textContent = `修改耳朵成功`;
+}
+
+function changeBHair() {
+    if (!person_face) {
+        alert(`无法获取persons_face数据`);
+    }
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    
+    var n = parseInt(document.getElementById('newFHair').value);
+    if (!confirm(`确认将编号为${lst}的角色修改后发为${n}吗？`)) {
+        return;
+    }
+    person_face.forEach(p => {
+        if (lst.includes(p.re[0])) {
+            p.re[3] = n;
+        }
+    })
+    document.getElementById('message').textContent = `修改后发成功`;
+}
+
+function changeFhair() {
+    if (!person_face) {
+        alert(`无法获取persons_face数据`);
+    }
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    
+    var n = parseInt(document.getElementById('newFHair').value);
+    if (!confirm(`确认将编号为${lst}的角色前发修改为${n}吗？`)) {
+        return;
+    }
+    person_face.forEach(p => {
+        if (lst.includes(p.re[0])) {
+            p.re[3] = n;
+        }
+    })
+    document.getElementById('message').textContent = `修改前发成功`;
 }
 
 function changeCloth() {
@@ -173,6 +325,45 @@ function changeEyeColor() {
     })
 }
 
+function changeLove() {
+    if (!person_value) {
+        alert(`无法获取persons_value数据`);
+    }
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    var p = parseInt(document.getElementById('lovePerson').value);
+
+    person_value.forEach( p => {
+        if (n === p.ni[3]) {
+            p._l2k.unshift(pid)
+            p._l2v.unshift(100)
+        }
+    })
+}
+
+function marryAll() {
+    var events = [];
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    
+    for (i in lst) {
+        events.push([1, i])
+    }
+
+    document.getElementById("message").textContent = `请求入宫事件：\r\n${JSON.stringify(events)}`;
+
+}
+
+function killMultipleEvents() {
+    var events = [];
+    var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
+    
+    for (i in lst) {
+        events.push([36,29,1,parseInt(i),0])
+    }
+
+    document.getElementById("message").textContent = `刺杀事件：\r\n${JSON.stringify(events)}`;
+        
+}
+
 function checkP() {
     if (!person_value) {
         alert(`无法获取persons_value数据`);
@@ -201,7 +392,29 @@ function checkFace() {
     
 }
 
+function findByBirth() {
+    if (!person_value) {
+        alert(`无法获取persons_value数据`);
+    }
+    var age = parseInt(document.getElementById('personAge').value);
+    var m = parseInt(document.getElementById('birthM').value);
+    var d = parseInt(document.getElementById('birthD').value);
+    var msg = '';
+    var ids = [];
+    person_value.forEach(p => {
+        if (p.ni[4] == age && p.ni[5] == m && p.ni[6] == d) {
+            ids.push(p.ni[3]);
+            msg += JSON.stringify(p);
+        }
+    })
+
+    document.getElementById("message").textContent = `符合条件的人物id：${ids}，\r\n符合条件的人物信息:\r\n${msg}`;
+}
+
 function checkLoyalty() {
+    if (!person_value) {
+        alert(`无法获取persons_value数据`);
+    }
     var p1 = parseInt(document.getElementById('loyp1').value);
     var p2 = parseInt(document.getElementById('loyp2').value);
     var res = ``;
@@ -211,7 +424,7 @@ function checkLoyalty() {
             var l1k = p._l1k;
             var l1v = p._l1v;
             var r1k = p._r1k;
-            var r1v = p.r1v;
+            var r1v = p._r1v;
             for (let i=0; i<l1k.length; i++) {
                 if (l1k[i] === p2) {
                     res += `${p1}对${p2}忠诚：${l1v[i]}, `;

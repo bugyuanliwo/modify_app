@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/file-saver@latest/dist/FileSaver.min.js"></script>
-    <!--for developing-->
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <!--for release, copy all code into html file-->
     
-    <title>解放双手修改器</title>
+    <title>可视化修改器</title>
 </head>
 <body>
     <div id="popup-message" onclick="document.getElementById('popup-message').style.display = 'none'">
         <p>使用提示：<br/>请上传正确格式的persons_value.sa和persons_face.sa<br/>
         请保证你输入的数据格式是正确的，本工具没有确认数据格式的功能<br/>
+        页面最下方出现的成功提示只代表未遇到错误，使用错误的数据依然有可能导致存档无法使用<br/>
         原代码为python且年代久远，转换为js后可能有错误，为避免坏档请注意备份<br/>
         点击任意文字或灰色部分可以关闭此提示<br/>
         想要永久移除此提示请修改index.html
@@ -33,7 +31,9 @@
         <button onclick="document.getElementById('changeSection').style.display = 'none'">隐藏</button>
         <button  onclick="document.getElementById('changeSection').style.display = 'block'">展开</button></h3>
     <div id="changeSection">
-        <div>请输入你想修改的角色的id，用英文逗号","分割（可以直接复制onstars的内容）</br>
+        <div>请输入你想修改的角色的id，用英文逗号","分割，或者 
+            <button style="display:inline;width:120px; height:30px;" onclick="document.getElementById('getOnstars').click()">从onstars中读取</button>
+            <input type='file' id="getOnstars" style="display:none" onchange="readOnstar()"></br>
             <textarea style="margin-top: 10px;" rows="3" cols="50" type="textarea" id="inputList" placeholder="1,2,3"></textarea></div>
         
         <div id="button-container">
@@ -43,6 +43,8 @@
             将脸型修改为<input id="newFace" type="number"><button onclick="changeFace()">修改</button></button><br />
             将嘴巴修改为<input id="newMouth" type="number"><button onclick="changeMouth()">修改</button></button><br />
             将耳朵修改为<input id="newEar" type="number"><button onclick="changeEar()">修改</button></button><br />
+            将后发修改为<input id="newFHair" type="number"><button onclick="changeFHair()">修改</button></button><br />
+            将前发修改为<input id="newBHair" type="number"><button onclick="changeBHair()">修改</button></button><br />
             
             将衣服修改为<input id="newCloth" type="number"><button onclick="changeCloth()">修改</button><br />
             
@@ -50,11 +52,16 @@
             将发色修改为<input id="hairColor1" type="number"><input id="hairColor2" type="number"><input id="hairColor3" type="number"><button onclick="changeHair()">修改</button></button><br />
             将配色修改为<input id="pColor1" type="number"><input id="pColor2" type="number"><input id="pColor3" type="number"><button onclick="changeColor()">修改</button></button><br />
             将眼睛颜色修改为<input id="eColor1" type="number"><input id="eColor2" type="number"><input id="eColor3" type="number"><button onclick="changeEyeColor()">修改</button></button><br />
+            
+            让角色爱上id为<input id="lovePerson" type="number">的角色<button onclick="changeLove()">修改</button><br />
+            让角色请求进宫（生成请求入宫事件，请手动添加进apply.sa）<button onclick="marryAll()">添加事件</button><br />
+            我要杀光光（生成刺杀事件，请复制进events.sa）<button onclick="killMultipleEvents()">添加事件</button><br />
+            
             添加<input id="numP" type="number">个性别为
                 <select id="sex"><option value="4">女</option><option value="3">男</option></select>
                 的角色，value为<textarea id="newPValue" rows="1" cols="50"></textarea>，face为
                 <textarea id="newPFace" rows="1" cols="50"></textarea>（请输入需要添加的角色数值,格式必须与存档数据完全一致，id随意，默认角色是师殷和凰凌世，有必要请直接修改源文件）
-                <button onclick="addP()">添加</button></button><br />
+                <button onclick="addP()">添加</button><br />
             
 
         </div>
@@ -69,8 +76,8 @@
         查询id为<input id="checkP" type="number">的角色数据<button onclick="checkP()">查询</button><br />
         查询id为<input id="checkFace" type="number">的角色脸数据<button onclick="checkFace()">查询</button><br />
         查询id为<input id="loyp1" type="number">的角色对id为<input id="loyp2" type="number">的角色的忠诚度<button onclick="checkLoyalty()">查询</button><br />
-
+        根据年龄<input id="personAge" type="number">，生日月<input id="birthM" type="number">，生日日<input id="birthD" type="number">查询角色信息<button onclick="findByBirth()">查询</button><br />
     </div>
-    <div style="word-wrap: break-word; width: 100%; font-family: 'Courier New', Courier, monospace;" id="message"></div>
+    <div style="word-wrap: break-word; width: 100%; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap;" id="message"></div>
 </body>
 </html>
