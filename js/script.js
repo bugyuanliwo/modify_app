@@ -206,7 +206,7 @@ function changeBHair() {
     document.getElementById('message').textContent = `修改后发成功`;
 }
 
-function changeFhair() {
+function changeFHair() {
     if (!person_face) {
         alert(`无法获取persons_face数据`);
     }
@@ -345,7 +345,7 @@ function marryAll() {
     var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
     
     for (i in lst) {
-        events.push([1, i])
+        events.push([1, parseInt(i)])
     }
 
     document.getElementById("message").textContent = `请求入宫事件：\r\n${JSON.stringify(events)}`;
@@ -453,12 +453,13 @@ function addP() {
         alert(`无法获取persons_value数据`);
     }
     var new_id = person_value[person_value.length - 1].ni[3] + 1;
-    console.log(new_id);
+
     var numP = parseInt(document.getElementById('numP').value);
     var sex = parseInt(document.getElementById('sex').value);
     var newPValue = document.getElementById('newPValue').value;
     var newPFace = document.getElementById('newPValue').value;
-    console.log(newPValue);
+
+    var lst = [];
 
     if (sex === 3) {
         if (newPValue === "") {
@@ -477,17 +478,19 @@ function addP() {
     }
 
     for (let i = 0; i < numP; i ++) {
-        newPValue = JSON.parse(newPValue);
-        newPValue.ni[3] = new_id;
-        person_value.push(newPValue);
+        var temp_p = JSON.parse(newPValue);
+        var temp_f = JSON.parse(newPFace);
+        console.log(person_value.length);
+        temp_p.ni[3] = new_id;
+        person_value.push(temp_p);
 
-        newPFace = JSON.parse(newPFace);
-        newPFace.re[0] = new_id;
-        person_face.push(newPFace);
+        temp_f.re[0] = new_id;
+        person_face.push(temp_f);
+        lst.push(new_id);
         new_id += 1;
     }
 
-    document.getElementById("message").textContent = `添加了${numP}个人物`;
+    document.getElementById("message").textContent = `添加了${numP}个人物，id为：${lst}`;
 }
 
 function downloadValueFile() {
