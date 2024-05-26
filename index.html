@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@latest/dist/FileSaver.min.js"></script>
     <!--for developing-->
     <script src="js/script.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
     <!--for release, copy all code into html file-->
     
     <title>解放双手修改器</title>
@@ -13,10 +14,11 @@
 <body>
     <div id="popup-message" onclick="document.getElementById('popup-message').style.display = 'none'">
         <p>使用提示：<br/>请上传正确格式的persons_value.sa和persons_face.sa<br/>
+        请保证你输入的数据格式是正确的，本工具没有确认数据格式的功能<br/>
         原代码为python且年代久远，转换为js后可能有错误，为避免坏档请注意备份<br/>
         点击任意文字或灰色部分可以关闭此提示<br/>
         想要永久移除此提示请修改index.html
-    </p>
+        </p>
     </div>
     <h3>上传需要修改的文件</h3>
     <div>
@@ -27,19 +29,35 @@
     请在此上传face文件
     <input type="file" id="person_face" accept=".sa" onchange="readFace()"></br>
     </div>
-    <h3>根据输入的id修改人物数据</h3>
-    <div>请输入你想修改的角色的id，用英文逗号","分割（可以直接复制onstars的内容）</br>
-        <textarea style="margin-top: 10px;" rows="3" cols="50" type="textarea" id="inputList" placeholder="1,2,3"></textarea></div>
-    
-    <div id="button-container">
-        将年龄修改为<input id="newAge" type="number"><button onclick="changeAge()">修改</button>
-        将衣服修改为<input id="newCloth" type="number"><button onclick="changeCloth()">修改</button><br />
-        将头饰修改为<input id="newDec" type="number"><button onclick="changeDec()">修改</button>
-        将发色修改为<input id="hairColor1" type="number"><input id="hairColor2" type="number"><input id="hairColor3" type="number"><button onclick="changeHair()">修改</button></button><br />
-        将配色修改为<input id="pColor1" type="number"><input id="pColor2" type="number"><input id="pColor3" type="number"><button onclick="changeColor()">修改</button></button><br />
-        将眼睛颜色修改为<input id="eColor1" type="number"><input id="eColor2" type="number"><input id="eColor3" type="number"><button onclick="changeEyeColor()">修改</button></button><br />
+    <h3>根据输入的id修改人物数据
+        <button onclick="document.getElementById('changeSection').style.display = 'none'">隐藏</button>
+        <button  onclick="document.getElementById('changeSection').style.display = 'block'">展开</button></h3>
+    <div id="changeSection">
+        <div>请输入你想修改的角色的id，用英文逗号","分割（可以直接复制onstars的内容）</br>
+            <textarea style="margin-top: 10px;" rows="3" cols="50" type="textarea" id="inputList" placeholder="1,2,3"></textarea></div>
         
+        <div id="button-container">
+            将年龄修改为<input id="newAge" type="number"><button onclick="changeAge()">修改</button><br />
+            将眉毛修改为<input id="newBrow" type="number"><button onclick="changeBrow()">修改</button></button><br />
+            将眼睛修改为<input id="newEye" type="number"><button onclick="changeEye()">修改</button></button><br />
+            将脸型修改为<input id="newFace" type="number"><button onclick="changeFace()">修改</button></button><br />
+            将嘴巴修改为<input id="newMouth" type="number"><button onclick="changeMouth()">修改</button></button><br />
+            将耳朵修改为<input id="newEar" type="number"><button onclick="changeEar()">修改</button></button><br />
+            
+            将衣服修改为<input id="newCloth" type="number"><button onclick="changeCloth()">修改</button><br />
+            
+            将头饰修改为<input id="newDec" type="number"><button onclick="changeDec()">修改</button><br />
+            将发色修改为<input id="hairColor1" type="number"><input id="hairColor2" type="number"><input id="hairColor3" type="number"><button onclick="changeHair()">修改</button></button><br />
+            将配色修改为<input id="pColor1" type="number"><input id="pColor2" type="number"><input id="pColor3" type="number"><button onclick="changeColor()">修改</button></button><br />
+            将眼睛颜色修改为<input id="eColor1" type="number"><input id="eColor2" type="number"><input id="eColor3" type="number"><button onclick="changeEyeColor()">修改</button></button><br />
+            添加<input id="numP" type="number">个性别为
+                <select id="sex"><option value="4">女</option><option value="3">男</option></select>
+                的角色，value为<textarea id="newPValue" rows="1" cols="50"></textarea>，face为
+                <textarea id="newPFace" rows="1" cols="50"></textarea>（请输入需要添加的角色数值,格式必须与存档数据完全一致，id随意，默认角色是师殷和凰凌世，有必要请直接修改源文件）
+                <button onclick="addP()">添加</button></button><br />
+            
 
+        </div>
     </div>
     <h3>下载修改后的文件</h3>
     <div>
