@@ -18,6 +18,15 @@
         想要永久移除此提示请修改index.html
         </p>
     </div>
+
+    <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Tab1')">上传</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab2')">修改</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab3')">查询</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab4')">下载</button>
+</div>
+
+<div id="Tab1" class="tabcontent">
     <h3>上传需要修改的文件</h3>
     <div>
     请在此上传value文件
@@ -27,6 +36,10 @@
     请在此上传face文件
     <input type="file" id="person_face" onchange="readFace()"></br>
     </div>
+    <h4>手动输入数据</h4>
+</div>
+
+<div id="Tab2" class="tabcontent">
     <h3>根据输入的id修改人物数据
         <button onclick="document.getElementById('changeSection').style.display = 'none'">隐藏</button>
         <button  onclick="document.getElementById('changeSection').style.display = 'block'">展开</button></h3>
@@ -66,11 +79,9 @@
 
         </div>
     </div>
-    <h3>下载修改后的文件</h3>
-    <div>
-        <button id="downloadValue" onclick="downloadValueFile()">下载person_value文件</button>
-        <button id="downloadFace" onclick="downloadFaceFile()">下载person_face文件</button>
-    </div>
+</div>
+
+<div id="Tab3" class="tabcontent">
     <h3>根据输入进行查询</h3>
     <div id="button-container">
         查询id为<input id="checkP" type="number">的角色数据<button onclick="checkP()">查询</button><br />
@@ -78,6 +89,20 @@
         查询id为<input id="loyp1" type="number">的角色对id为<input id="loyp2" type="number">的角色的忠诚度<button onclick="checkLoyalty()">查询</button><br />
         根据年龄<input id="personAge" type="number">，生日月<input id="birthM" type="number">，生日日<input id="birthD" type="number">查询角色信息<button onclick="findByBirth()">查询</button><br />
     </div>
+</div>
+
+<div id="Tab4" class="tabcontent">
+    <h3>下载/复制修改后的文件</h3>
+    <div>
+        <button id="downloadValue" onclick="downloadValueFile()">下载person_value文件</button>
+        <button id="downloadFace" onclick="downloadFaceFile()">下载person_face文件</button>
+    </div>
+</div>
+
+    
+   
+   
+<h3 style="margin-left: 10px;">输出信息</h3>
     <div style="word-wrap: break-word; width: 100%; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap;" id="message"></div>
 </body>
 </html>
