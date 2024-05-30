@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/script.js"></script>
+    <script src="js/index.js"></script>
     <link rel="stylesheet" href="css/styles.css">
     
     <title>可视化修改器</title>
@@ -25,7 +25,7 @@
     </div>
     <div>
     请在此上传face文件
-    <input type="file" id="person_face" accept=".sa" onchange="readFace()"></br>
+    <input type="file" id="person_face" onchange="readFace()"></br>
     </div>
     <h3>根据输入的id修改人物数据
         <button onclick="document.getElementById('changeSection').style.display = 'none'">隐藏</button>
