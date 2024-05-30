@@ -20,29 +20,40 @@
     </div>
 
     <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'Tab1')">上传</button>
+    <button class="tablinks active" onclick="openTab(event, 'Tab1')">上传</button>
     <button class="tablinks" onclick="openTab(event, 'Tab2')">修改</button>
     <button class="tablinks" onclick="openTab(event, 'Tab3')">查询</button>
     <button class="tablinks" onclick="openTab(event, 'Tab4')">下载</button>
 </div>
 
-<div id="Tab1" class="tabcontent">
+<div id="Tab1" class="tabcontent" style="display: block;">
     <h3>上传需要修改的文件</h3>
     <div>
-    请在此上传value文件
-    <input type="file" id="person_value" onchange="readValue()"></br>
+        请在此上传persons_value.sa文件
+        <input type="file" id="person_value" onchange="readValue()"></br>
     </div>
     <div>
-    请在此上传face文件
-    <input type="file" id="person_face" onchange="readFace()"></br>
+        请在此上传persons_face.sa文件
+        <input type="file" id="person_face" onchange="readFace()"></br>
     </div>
-    <h4>手动输入数据</h4>
+    <div>
+        请在此上传apply.sa文件
+        <input type="file" id="apply" onchange="readLst('apply')"></br>
+    </div>
+    <div>
+        请在此上传events.sa文件
+        <input type="file" id="events" onchange="readLst('events')"></br>
+    </div>
+    <h4>如无法上传，可以在下方手动复制文件内容</h4>
+    <p>输入persons_value.sa的内容: <input id="input_persons_value" type="text"/><button onclick="assignValue('input_persons_value')">添加</button></p>
+    <p>输入persons_face.sa的内容: <input id="input_persons_face" type="text"/><button onclick="assignValue('input_persons_face')">添加</button></p>
+    <p>输入apply.sa的内容: <input id="input_apply" type="text"/><button onclick="assignValue('input_apply')">添加</button></p>
+    <p>输入events.sa的内容: <input id="input_events" type="text"/><button onclick="assignValue('input_events')">添加</button></p>
+
 </div>
 
 <div id="Tab2" class="tabcontent">
-    <h3>根据输入的id修改人物数据
-        <button onclick="document.getElementById('changeSection').style.display = 'none'">隐藏</button>
-        <button  onclick="document.getElementById('changeSection').style.display = 'block'">展开</button></h3>
+    <h3>根据输入的id修改人物数据</h3>
     <div id="changeSection">
         <div>请输入你想修改的角色的id，用英文逗号","分割，或者 
             <button style="display:inline;width:120px; height:30px;" onclick="document.getElementById('getOnstars').click()">从onstars中读取</button>
@@ -92,8 +103,9 @@
 </div>
 
 <div id="Tab4" class="tabcontent">
-    <h3>下载/复制修改后的文件</h3>
+    <h3>下载/查看修改后的文件</h3>
     <div>
+        persons_value.sa<button onclick="showData('value')">显示</button> persons_face.sa<button onclick="showData('face')">显示</button> apply.sa<button onclick="showData('apply')">显示</button> events.sa<button onclick="showData('events')">显示</button><br />
         <button id="downloadValue" onclick="downloadValueFile()">下载person_value文件</button>
         <button id="downloadFace" onclick="downloadFaceFile()">下载person_face文件</button>
     </div>

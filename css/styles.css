@@ -67,4 +67,9 @@ textarea {
     border: 1px solid #ccc;
     border-top: none;
   }
+
+  #Tab4 * {
+    padding: 2px 5px;
+    margin: 5px;
+  }
   

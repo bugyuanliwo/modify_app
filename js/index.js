@@ -14,6 +14,8 @@ function openTab(evt, tabName) {
 
 let person_value = null;
 let person_face = null;
+let apply = null;
+let events = null;
 
 function readValue() {
     var fileInput = document.getElementById('person_value');
@@ -65,6 +67,76 @@ function readFace() {
         reader.readAsText(file); // 以文本形式读取文件
     } else {
         alert("请选择一个文件");
+    }
+}
+
+function readLst (variable) {
+    var fileInput = document.getElementById(variable);
+    var file = fileInput.files[0];
+
+    if (file) {
+        if (file.name !== variable + '.sa') {
+            alert(`你上传的文件名并非${variable}.sa，请确认这是你想上传的文件!`);
+        }
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var contents = e.target.result;
+            try {
+                switch (variable) {
+                    case 'apply':
+                        apply = JSON.parse(contents);
+                        break;
+                    case 'events':
+                        events = JSON.parse(contents);
+                        break;
+                }
+            } catch (error) {
+                alert("解析文件错误: " + error.message);
+            }
+        };
+
+        reader.readAsText(file); // 以文本形式读取文件
+    } else {
+        alert("请选择一个文件");
+    }
+}
+
+
+function assignValue (variable) {
+    let contents = document.getElementById(variable).value;
+    switch (variable) {
+        case 'input_persons_value':
+            var initialData = JSON.parse(contents);
+            person_value = initialData['re'].map(item => JSON.parse(item));
+            break;
+        case 'input_persons_face':
+            var initialData = JSON.parse("["+contents.substring(0, contents.length-1)+"]");
+            person_face = initialData.map(item => JSON.parse(item));
+            break;
+        case 'input_apply':
+            apply = JSON.parse(contents);
+            break;
+        case 'input_events':
+            events = JSON.parse(contents);
+            break;
+    }
+}
+
+function showData(value) {
+    switch(value) {
+        case 'value':
+            document.getElementById('message').textContent = JSON.stringify(person_value);
+            break;
+        case 'face':
+            document.getElementById('message').textContent = JSON.stringify(person_face);
+            break;
+        case 'apply':
+            document.getElementById('message').textContent = JSON.stringify(apply);
+            break;
+        case 'events':
+            document.getElementById('message').textContent = JSON.stringify(events);
+            break;
     }
 }
 
