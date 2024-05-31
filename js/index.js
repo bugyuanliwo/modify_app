@@ -150,30 +150,9 @@ function showData(value) {
     }
 }
 
-function readOnstar() {
-    var fileInput = document.getElementById('getOnstars');
-    var file = fileInput.files[0];
+function readOnstars() {
+   document.getElementById('inputList').value = onstars;
 
-    if (file) {
-        var reader = new FileReader();
-        if (file.name !== 'onstars.sa') {
-            alert('你上传的文件名并非onstars.sa，请确认这是你想上传的文件!');
-        }
-
-        reader.onload = function(e) {
-            var contents = e.target.result;
-            try {
-                document.getElementById('inputList').value = contents.substring(1,contents.length-1);
-
-            } catch (error) {
-                alert("解析文件错误: " + error.message);
-            }
-        };
-
-        reader.readAsText(file);
-    } else {
-        alert("请选择一个文件");
-    }
 }
 
 function changeAge() {

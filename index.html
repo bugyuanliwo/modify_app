@@ -50,11 +50,11 @@
     </div>
     
     <h4>如无法上传，可以在下方手动复制文件内容</h4>
-    <p>输入persons_value.sa的内容:<br/> <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_persons_value" type="text"></textarea><button onclick="assignValue('input_persons_value')">添加</button></p>
-    <p>输入persons_face.sa的内容:<br/>  <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_persons_face" type="text"></textarea><button onclick="assignValue('input_persons_face')">添加</button></p>
-    <p>输入apply.sa的内容:<br/>  <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_apply" type="text"></textarea><button onclick="assignValue('input_apply')">添加</button></p>
-    <p>输入events.sa的内容:<br/>  <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_events" type="text"></textarea><button onclick="assignValue('input_events')">添加</button></p>
-    <p>输入onstars.sa的内容:<br/>  <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_onstars" type="text"></textarea><button onclick="assignValue('ipnut_onstars')">添加</button></p>
+    <p>输入persons_value.sa的内容:<br/> <textarea rows="1" cols="50" style="width: 80%; vertical-align: middle;margin-right: 5px;" id="input_persons_value" type="text"></textarea><button onclick="assignValue('input_persons_value')">添加</button></p>
+    <p>输入persons_face.sa的内容:<br/>  <textarea rows="1" cols="50" style="width: 80%; vertical-align: middle;margin-right: 5px;" id="input_persons_face" type="text"></textarea><button onclick="assignValue('input_persons_face')">添加</button></p>
+    <p>输入apply.sa的内容:<br/>  <textarea rows="1" cols="50" style="width: 80%; vertical-align: middle;margin-right: 5px;" id="input_apply" type="text"></textarea><button onclick="assignValue('input_apply')">添加</button></p>
+    <p>输入events.sa的内容:<br/>  <textarea rows="1" cols="50" style="width: 80%; vertical-align: middle;margin-right: 5px;" id="input_events" type="text"></textarea><button onclick="assignValue('input_events')">添加</button></p>
+    <p>输入onstars.sa的内容:<br/>  <textarea rows="1" cols="50" style="width: 80%; vertical-align: middle;margin-right: 5px;" id="input_onstars" type="text"></textarea><button onclick="assignValue('ipnut_onstars')">添加</button></p>
 
 </div>
 
@@ -62,8 +62,8 @@
     <h3>根据输入的id修改人物数据</h3>
     <div id="changeSection">
         <div>请输入你想修改的角色的id，用英文逗号","分割，或者 
-            <button style="display:inline;width:120px; height:30px;" onclick="document.getElementById('getOnstars').click()">从onstars中读取</button><br />
-            <textarea style="margin-top: 10px; max-width: 90%;" rows="3" cols="50" type="textarea" id="inputList" placeholder="1,2,3,4,5"></textarea></div>
+            <button onclick="readOnstars()">使用onstars</button><br />
+            <textarea style="margin-top: 10px; width: 90%;" rows="3" cols="50" type="textarea" id="inputList" placeholder="1,2,3,4,5"></textarea></div>
         
         <div id="button-container">
             将年龄修改为<input id="newAge" type="number"><button onclick="changeAge()">修改</button><br />
