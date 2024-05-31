@@ -437,14 +437,28 @@ function changeLove() {
 }
 
 function marryAll() {
-    var events = [];
+    if (apply == null) {
+        apply = [[],[],[],[],[]];
+    }
     var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
     
     for (i in lst) {
-        events.push([1, parseInt(i)])
+        apply[3].push([1, parseInt(lst[i])])
     }
 
-    document.getElementById("message").textContent = `请求入宫事件：\r\n${JSON.stringify(events)}`;
+    document.getElementById("message").textContent = `已添加入宫请求，当前apply.sa为：\r\n${JSON.stringify(apply)}`;
+
+}
+
+function marryRequest() {
+    if (apply == null) {
+        apply = [[],[],[],[],[]];
+    }
+    var love1 = document.getElementById('lovePersonA').value;
+    var love2 = document.getElementById('lovePersonB').value;
+    apply[3].push([2, parseInt(love1), parseInt(love2)]);
+
+    document.getElementById("message").textContent = `已添加赐婚请求，当前apply.sa为：\r\n${JSON.stringify(apply)}`;
 
 }
 
@@ -458,7 +472,7 @@ function killMultipleEvents() {
         events.push([36,29,1,parseInt(i),0])
     }
 
-    document.getElementById("message").textContent = `当前的events.sa为：\r\n${JSON.stringify(events)}`;
+    document.getElementById("message").textContent = `已添加刺杀事件，当前的events.sa为：\r\n${JSON.stringify(events)}`;
         
 }
 
@@ -534,6 +548,18 @@ function findByAge() {
     })
 
     document.getElementById("message").textContent = `符合条件的人物id：${ids}，\r\n符合条件的人物信息:\r\n${msg}`;
+
+}
+
+function findByOccu() {
+    var occupation = parseInt(document.getElementById('occupation').value);
+    var l = [];
+    person_value.forEach(p => {
+        if (p.ni[17] === occupation) {
+            l.push(p.ni[3]);
+        }
+    })
+    document.getElementById("message").textContent = `符合条件的人物id：${l}`;
 
 }
 
