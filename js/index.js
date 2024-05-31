@@ -14,9 +14,9 @@ function openTab(evt, tabName) {
 
 let person_value = null;
 let person_face = null;
-let apply = null;
-let events = null;
-let onstars = null;
+let apply = [[],[],[],[],[]];
+let events = [];
+let onstars = [];
 
 function readValue() {
     var fileInput = document.getElementById('person_value');
@@ -536,6 +536,9 @@ function findByBirth() {
 }
 
 function findByAge() {
+    if (!person_value) {
+        alert(`无法获取persons_value数据`);
+    }
     var msg = '';
     var ids = [];
     var ageFrom = parseInt(document.getElementById('ageFrom').value);
@@ -552,6 +555,9 @@ function findByAge() {
 }
 
 function findByOccu() {
+    if (!person_value) {
+        alert(`无法获取persons_value数据`);
+    }
     var occupation = parseInt(document.getElementById('occupation').value);
     var l = [];
     person_value.forEach(p => {
@@ -684,4 +690,26 @@ function downloadFaceFile() {
     } else {
         alert("没有数据可下载");
     }
+}
+
+function downloadOtherFile(variable) {
+    let jsonString;
+    switch(variable){
+        case 'events':
+            jsonString = JSON.stringify(events);
+            break;
+        case 'apply':
+            jsonString = JSON.stringify(apply);
+            break;
+        case 'onstars':
+            jsonString = JSON.stringify(onstars);
+            break;
+    }
+    var blob = new Blob([jsonString], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = `${variable}_edit.sa`;
+    a.click();
+    URL.revokeObjectURL(url);
 }
