@@ -44,11 +44,17 @@
         请在此上传events.sa文件
         <input type="file" id="events" onchange="readLst('events')"></br>
     </div>
+    <div>
+        请在此上传onstars.sa文件
+        <input type='file' id="onstars" onchange="readLst('onstars')"></br>
+    </div>
+    
     <h4>如无法上传，可以在下方手动复制文件内容</h4>
-    <p>输入persons_value.sa的内容: <input id="input_persons_value" type="text"/><button onclick="assignValue('input_persons_value')">添加</button></p>
-    <p>输入persons_face.sa的内容: <input id="input_persons_face" type="text"/><button onclick="assignValue('input_persons_face')">添加</button></p>
-    <p>输入apply.sa的内容: <input id="input_apply" type="text"/><button onclick="assignValue('input_apply')">添加</button></p>
-    <p>输入events.sa的内容: <input id="input_events" type="text"/><button onclick="assignValue('input_events')">添加</button></p>
+    <p>输入persons_value.sa的内容:<br/> <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_persons_value" type="text"></textarea><button onclick="assignValue('input_persons_value')">添加</button></p>
+    <p>输入persons_face.sa的内容:<br/>  <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_persons_face" type="text"></textarea><button onclick="assignValue('input_persons_face')">添加</button></p>
+    <p>输入apply.sa的内容:<br/>  <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_apply" type="text"></textarea><button onclick="assignValue('input_apply')">添加</button></p>
+    <p>输入events.sa的内容:<br/>  <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_events" type="text"></textarea><button onclick="assignValue('input_events')">添加</button></p>
+    <p>输入onstars.sa的内容:<br/>  <textarea rows="1" cols="50" style="max-width: 80%; vertical-align: middle;margin-right: 5px;" id="input_onstars" type="text"></textarea><button onclick="assignValue('ipnut_onstars')">添加</button></p>
 
 </div>
 
@@ -56,9 +62,8 @@
     <h3>根据输入的id修改人物数据</h3>
     <div id="changeSection">
         <div>请输入你想修改的角色的id，用英文逗号","分割，或者 
-            <button style="display:inline;width:120px; height:30px;" onclick="document.getElementById('getOnstars').click()">从onstars中读取</button>
-            <input type='file' id="getOnstars" style="display:none" onchange="readOnstar()"></br>
-            <textarea style="margin-top: 10px;" rows="3" cols="50" type="textarea" id="inputList" placeholder="1,2,3"></textarea></div>
+            <button style="display:inline;width:120px; height:30px;" onclick="document.getElementById('getOnstars').click()">从onstars中读取</button><br />
+            <textarea style="margin-top: 10px; max-width: 90%;" rows="3" cols="50" type="textarea" id="inputList" placeholder="1,2,3"></textarea></div>
         
         <div id="button-container">
             将年龄修改为<input id="newAge" type="number"><button onclick="changeAge()">修改</button><br />
@@ -83,8 +88,8 @@
             
             添加<input id="numP" type="number">个性别为
                 <select id="sex"><option value="4">女</option><option value="3">男</option></select>
-                的角色，value为<textarea id="newPValue" rows="1" cols="50"></textarea>，face为
-                <textarea id="newPFace" rows="1" cols="50"></textarea>（请输入需要添加的角色数值,格式必须与存档数据完全一致，id随意，默认角色是师殷和凰凌世，有必要请直接修改源文件）
+                的角色，value为<textarea style="max-width: 60%;vertical-align: top;" id="newPValue" rows="1" cols="50"></textarea>，face为
+                <textarea style="max-width: 60%;vertical-align: top;" id="newPFace" rows="1" cols="50"></textarea>（请输入需要添加的角色数值,格式必须与存档数据完全一致，id随意，默认角色是师殷和凰凌世，有必要请直接修改源文件）
                 <button onclick="addP()">添加</button><br />
             
 
@@ -99,13 +104,19 @@
         查询id为<input id="checkFace" type="number">的角色脸数据<button onclick="checkFace()">查询</button><br />
         查询id为<input id="loyp1" type="number">的角色对id为<input id="loyp2" type="number">的角色的忠诚度<button onclick="checkLoyalty()">查询</button><br />
         根据年龄<input id="personAge" type="number">，生日月<input id="birthM" type="number">，生日日<input id="birthD" type="number">查询角色信息<button onclick="findByBirth()">查询</button><br />
+        所有年龄从<input id="ageFrom" type="number">岁到<input id="ageTo" type="number">岁的NPC<button onclick="findByAge()">查询</button>
+        所有职业为<input id="personAge" type="number">的NPC<button onclick="findByBirth()">查询</button>
     </div>
 </div>
 
 <div id="Tab4" class="tabcontent">
     <h3>下载/查看修改后的文件</h3>
     <div>
-        persons_value.sa<button onclick="showData('value')">显示</button> persons_face.sa<button onclick="showData('face')">显示</button> apply.sa<button onclick="showData('apply')">显示</button> events.sa<button onclick="showData('events')">显示</button><br />
+        persons_value.sa<button onclick="showData('value')">显示</button> <br />
+        persons_face.sa<button onclick="showData('face')">显示</button> <br />
+        apply.sa<button onclick="showData('apply')">显示</button><br />
+         events.sa<button onclick="showData('events')">显示</button><br />
+        onstars.sa<button onclick="showData('onstars')">显示</button><br />
         <button id="downloadValue" onclick="downloadValueFile()">下载person_value文件</button>
         <button id="downloadFace" onclick="downloadFaceFile()">下载person_face文件</button>
     </div>

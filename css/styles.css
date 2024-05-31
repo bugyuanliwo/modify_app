@@ -27,10 +27,6 @@ div {
     width: 50px;
 }
 
-textarea {
-    vertical-align: top;
-}
-
 /* Style the tab */
 .tab {
     overflow: hidden;

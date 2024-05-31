@@ -16,6 +16,7 @@ let person_value = null;
 let person_face = null;
 let apply = null;
 let events = null;
+let onstars = null;
 
 function readValue() {
     var fileInput = document.getElementById('person_value');
@@ -90,13 +91,16 @@ function readLst (variable) {
                     case 'events':
                         events = JSON.parse(contents);
                         break;
+                    case 'onstars':
+                        onstars = JSON.parse(contents);
+                        break;
                 }
             } catch (error) {
                 alert("解析文件错误: " + error.message);
             }
         };
 
-        reader.readAsText(file); // 以文本形式读取文件
+        reader.readAsText(file);
     } else {
         alert("请选择一个文件");
     }
@@ -120,6 +124,9 @@ function assignValue (variable) {
         case 'input_events':
             events = JSON.parse(contents);
             break;
+        case 'input_onstars':
+            onstars = JSON.parse(contents);
+            break;
     }
 }
 
@@ -136,6 +143,9 @@ function showData(value) {
             break;
         case 'events':
             document.getElementById('message').textContent = JSON.stringify(events);
+            break;
+        case 'onstars':
+            document.getElementById('message').textContent = JSON.stringify(onstars);
             break;
     }
 }
@@ -439,14 +449,16 @@ function marryAll() {
 }
 
 function killMultipleEvents() {
-    var events = [];
+    if (events == null) {
+        events = [];
+    }
     var lst = JSON.parse("[" + document.getElementById('inputList').value + "]");
     
     for (i in lst) {
         events.push([36,29,1,parseInt(i),0])
     }
 
-    document.getElementById("message").textContent = `刺杀事件：\r\n${JSON.stringify(events)}`;
+    document.getElementById("message").textContent = `当前的events.sa为：\r\n${JSON.stringify(events)}`;
         
 }
 
@@ -494,7 +506,35 @@ function findByBirth() {
         }
     })
 
+    document.getElementById("message").textContent = `符合条件的人物id：${ids}`;
+
+    const button = document.createElement('button');
+  
+    button.innerText = '加入onstars'; // Text shown on the button
+    button.onclick = function() { alert('Button Clicked!'); }; // Event handler for the button click
+
+    // Get the div element by its ID
+    const div = document.getElementById('message');
+
+    // Append the button as a child of the div
+    div.appendChild(button);
+    document.getElementById("message").appendChild('button')
+}
+
+function findByAge() {
+    var msg = '';
+    var ids = [];
+    var ageFrom = parseInt(document.getElementById('ageFrom').value);
+    var ageTo = parseInt(document.getElementById('ageTo').value);
+    person_value.forEach(p => {
+        if (p.ni[4] >= ageFrom && p.ni[4] <= ageTo) {
+            ids.push(p.ni[3]);
+            msg += JSON.stringify(p);
+        }
+    })
+
     document.getElementById("message").textContent = `符合条件的人物id：${ids}，\r\n符合条件的人物信息:\r\n${msg}`;
+
 }
 
 function checkLoyalty() {
