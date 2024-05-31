@@ -455,6 +455,24 @@ function killMultipleEvents() {
         
 }
 
+function changeOccupation(first, second) {
+    if (!person_value) {
+        alert(`无法获取persons_value数据`);
+    }
+
+    var l = [];
+    
+    person_value.forEach(p => {
+        if (first === p.ni[17]) {
+            p.ni[17] = second;
+            l.push(p.ni[3])
+        }
+    })
+
+    document.getElementById("message").textContent = `已将和尚${l}修改为平民`;
+    
+}
+
 function checkP() {
     if (!person_value) {
         alert(`无法获取persons_value数据`);

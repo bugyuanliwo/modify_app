@@ -86,6 +86,7 @@
             让角色请求进宫<button onclick="marryAll()">添加请求</button><br />
             让id为<input id="lovePersonA" type="number">的角色和id为<input id="lovePersonB" type="number">的角色请求赐婚<button onclick="marryRequest()">添加请求</button><br />
             送去菜市场<button onclick="killMultipleEvents()">添加事件</button><br />
+            开和尚盲盒<button onclick="changeOccupation(9,0)">修改</button><br />
             
             添加<input id="numP" type="number">个性别为
                 <select id="sex"><option value="4">女</option><option value="3">男</option></select>
@@ -93,7 +94,6 @@
                 <textarea style="max-width: 60%;vertical-align: top;" id="newPFace" rows="1" cols="50"></textarea>（请输入需要添加的角色数值,格式必须与存档数据完全一致，id随意，默认角色是师殷和凰凌世，有必要请直接修改源文件）
                 <button onclick="addP()">添加</button><br />
             
-
         </div>
     </div>
 </div>
@@ -106,7 +106,7 @@
         查询id为<input id="loyp1" type="number">的角色对id为<input id="loyp2" type="number">的角色的忠诚度<button onclick="checkLoyalty()">查询</button><br />
         根据年龄<input id="personAge" type="number">，生日月<input id="birthM" type="number">，生日日<input id="birthD" type="number">查询角色信息<button onclick="findByBirth()">查询</button><br />
         所有年龄从<input id="ageFrom" type="number">岁到<input id="ageTo" type="number">岁的NPC<button onclick="findByAge()">查询</button><br />
-        所有职业为<select id="occupation"><option value="9">和尚</option><option value="3">琴师</option></select>的NPC<button onclick="findByOccu()">查询</button>
+        所有职业为<select id="occupation"><option value="6">琴师</option></option><option value="7">歌者</option></option><option value="8">舞者</option><option value="9">和尚</option></select>的NPC<button onclick="findByOccu()">查询</button>
     </div>
 </div>
 
